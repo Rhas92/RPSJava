@@ -7,15 +7,15 @@
 /// This has to run until either the computer or the user have won 5 rounds.
 ///
 
-
-
-/// Created a function that returns either "ROCK", "PAPER" or "SCISSORS". 
+/// Choices from the computer and player are stored in these variables.
 
 const computerSelection = getComputerChoice();
 
+/// Function that returns either "ROCK", "PAPER" or "SCISSORS". 
+
 function getComputerChoice() {
-    let randomChoice = Math.floor(Math.random() * 3);
-    switch (randomChoice) {
+    let computerRandomChoice = Math.floor(Math.random() * 3);
+    switch (computerRandomChoice) {
         case 0:
             return("ROCK");
             break;
@@ -28,7 +28,11 @@ function getComputerChoice() {
     }
 }
 
-getComputerChoice ();
-console.log(computerSelection);
+/// Function that prompts the player to input a choice and is case insensitive.
+
+function getPlayerChoice () {
+    let playerSelection = prompt ("Please enter a choice:").toUpperCase();
+}
+
 
 
