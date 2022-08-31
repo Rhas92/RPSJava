@@ -10,6 +10,7 @@
 /// Choices from the computer and player are stored in these variables.
 
 const computerSelection = getComputerChoice();
+const playerSelection = getPlayerChoice();
 
 /// Function that returns either "ROCK", "PAPER" or "SCISSORS". 
 
@@ -28,11 +29,26 @@ function getComputerChoice() {
     }
 }
 
-/// Function that prompts the player to input a choice and is case insensitive.
+/// Function that prompts the player to input a choice and is case insensitive since it always converts the string toUpperCase.
 
 function getPlayerChoice () {
-    let playerSelection = prompt ("Please enter a choice:").toUpperCase();
+   return prompt ("Please enter a choice:").toUpperCase();
 }
 
+/// This function play a round of the game by comparing the playerSelection to the computerSelection and giving an alert depending on the result of the comparison.
 
+function playRound(playerSelection, computerSelection) {
+    if ((playerSelection === "PAPER" && computerSelection === "ROCK") || (playerSelection === "ROCK" && computerSelection === "SCISSORS") || (playerSelection === "SCISSORS" && computerSelection === "PAPER")) {
+        return alert ("You choosed: " + playerSelection + " " + "The computer choosed: " + computerSelection + "." + " You won!");
+    } 
+    
+    else if ((playerSelection === "PAPER" && computerSelection === "SCISSORS") || (playerSelection === "ROCK" && computerSelection === "PAPER") || (playerSelection === "SCISSORS" && computerSelection === "ROCK")){
+        return alert ("You choosed: " + playerSelection + " " + "The computer choosed: " + computerSelection + "." + " You lost!")
+    } 
 
+    else if (playerSelection === computerSelection) {
+        return alert ("You choosed: " + playerSelection + " " + "The computer choosed: " + computerSelection + "." + " No winner!")
+    }
+}
+   
+  console.log(playRound(playerSelection, computerSelection));
