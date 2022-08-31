@@ -1,21 +1,16 @@
-/// This is pseudocode
-/// I will make a game of Rock paper scissors.
-/// First the user has to enter one of the three options.
-/// The computer also must select from an array of choices randomly.
-/// Create a function that compares the user input and the computer choice.
-/// The program declares a winner for the round following the RPS rules. Rock beats scissors, Paper beats rock and Scissors beat paper.
-/// This has to run until either the computer or the user have won 5 rounds.
-///
 
 /// Choices from the computer and player are stored in these variables.
 
 const computerSelection = getComputerChoice();
-const playerSelection = getPlayerChoice();
+const playerSelection = "ROCK";
 
-/// Function that returns either "ROCK", "PAPER" or "SCISSORS". 
+
+/// Function that returns either "ROCK", "PAPER" or "SCISSORS" as the computerSelection. 
 
 function getComputerChoice() {
+    
     let computerRandomChoice = Math.floor(Math.random() * 3);
+    
     switch (computerRandomChoice) {
         case 0:
             return("ROCK");
@@ -27,7 +22,13 @@ function getComputerChoice() {
             return("SCISSORS");
             break;
     }
-}
+} 
+
+/// These variables keep track of the player wins, computer wins and ties.
+
+let playerWin = 0;
+let computerWin = 0;
+let gameTies = 0;
 
 /// Function that prompts the player to input a choice and is case insensitive since it always converts the string toUpperCase.
 
@@ -38,17 +39,59 @@ function getPlayerChoice () {
 /// This function play a round of the game by comparing the playerSelection to the computerSelection and giving an alert depending on the result of the comparison.
 
 function playRound(playerSelection, computerSelection) {
+   
+    playerSelection = getPlayerChoice();
+    computerSelection = getComputerChoice();
+    
     if ((playerSelection === "PAPER" && computerSelection === "ROCK") || (playerSelection === "ROCK" && computerSelection === "SCISSORS") || (playerSelection === "SCISSORS" && computerSelection === "PAPER")) {
-        return alert ("You choosed: " + playerSelection + " " + "The computer choosed: " + computerSelection + "." + " You won!");
+        alert ("You selected: " + playerSelection + " " + "The computer selected: " + computerSelection + "." + " You won!");
+        playerWin = playerWin + 1;
     } 
     
     else if ((playerSelection === "PAPER" && computerSelection === "SCISSORS") || (playerSelection === "ROCK" && computerSelection === "PAPER") || (playerSelection === "SCISSORS" && computerSelection === "ROCK")){
-        return alert ("You choosed: " + playerSelection + " " + "The computer choosed: " + computerSelection + "." + " You lost!")
+        alert ("You selected: " + playerSelection + " " + "The computer selected: " + computerSelection + "." + " You lost!")
+        computerWin = computerWin + 1;
     } 
 
     else if (playerSelection === computerSelection) {
-        return alert ("You choosed: " + playerSelection + " " + "The computer choosed: " + computerSelection + "." + " No winner!")
+        alert ("You selected: " + playerSelection + " " + "The computer selected: " + computerSelection + "." + " No winner!")
+        gameTies = gameTies + 1;
     }
 }
    
-  console.log(playRound(playerSelection, computerSelection));
+/// Plays 5 rounds of the game logging in the console the score.
+
+function game () {
+    
+    for (let i = 0; i < 5; i++){
+        playRound ();
+        console.log("Player wins: " + playerWin);
+        console.log("Computer wins: " + computerWin);
+        console.log("Rounds tied: " + gameTies);
+    }
+}
+
+/// Function that declares the winner comparing computerWin to playerWin.
+
+function gameWinner () {
+    
+    if (computerWin > playerWin) {
+        alert ("The computer has won " + computerWin + " to " + playerWin + " with " + gameTies + " ties.")
+    } 
+    
+    else if (playerWin > computerWin) {
+        alert ("You have won " + playerWin + " to " + computerWin + " with " + gameTies + " ties.")
+    } 
+    
+    else if (playerWin === computerWin) {
+        alert ("This is a tie, reload and try again.")
+    }
+}
+
+/// This section initializes the program.
+
+game ();
+gameWinner ();
+
+///
+
