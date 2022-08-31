@@ -42,15 +42,12 @@ function getPlayerChoice () {
 function playRound(playerSelection, computerSelection) {
    
     playerSelection = getPlayerChoice();
-    if (playerSelection != "PAPER" && "SCISSORS" && "ROCK") {
-        alert ("You can only select rock, paper or scissors, try again.")
-        playRound ();
-    }
     computerSelection = getComputerChoice();
     
     if ((playerSelection === "PAPER" && computerSelection === "ROCK") || 
         (playerSelection === "ROCK" && computerSelection === "SCISSORS") || 
         (playerSelection === "SCISSORS" && computerSelection === "PAPER")) {
+            
             alert ("You selected: " + playerSelection + " " + "The computer selected: " + computerSelection + "." + " You won!");
             playerWin = playerWin + 1;
     } 
@@ -58,11 +55,13 @@ function playRound(playerSelection, computerSelection) {
     else if ((playerSelection === "PAPER" && computerSelection === "SCISSORS") ||
              (playerSelection === "ROCK" && computerSelection === "PAPER") ||
              (playerSelection === "SCISSORS" && computerSelection === "ROCK")) {
+            
             alert ("You selected: " + playerSelection + " " + "The computer selected: " + computerSelection + "." + " You lost!")
             computerWin = computerWin + 1;
     } 
 
     else if (playerSelection === computerSelection) {
+            
             alert ("You selected: " + playerSelection + " " + "The computer selected: " + computerSelection + "." + " No winner!")
             gameTies = gameTies + 1;
     }
@@ -102,5 +101,5 @@ function gameWinner () {
 game ();
 gameWinner ();
 
-///
+/// Coded by Ramon Aller August 31st 2022.
 
