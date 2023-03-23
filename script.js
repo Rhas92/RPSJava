@@ -31,6 +31,9 @@ function isGameOver() {
     } else if (computerWin === 5) {
         gameWinner = "computer";
     }
+    if (playerWin === 5 || computerWin === 5) {   
+        alert("Game Over! " + gameWinner + " won!")
+    }
     return playerWin === 5 || computerWin === 5
   }
  
@@ -82,7 +85,22 @@ round.textContent = "The current round is: " + `${currentRound}`
 paperBtn.addEventListener("click", () => handleClick("PAPER"));
 rockBtn.addEventListener("click", () => handleClick("ROCK"));
 scissorsBtn.addEventListener("click", () => handleClick("SCISSORS"));
+restartBtn.addEventListener("click", restartGame);
 
+function restartGame() {
+    playerWin = 0;
+    computerWin = 0;
+    gameTies = 0;
+    roundWinner = '';
+    currentRound = 1;
+    gameWinner = '';
+    playerScore.textContent = "Player: " + `${playerWin}`;
+    computerScore.textContent = "Computer: " + `${computerWin}`;
+    ties.textContent = "Ties: " + `${gameTies}`;
+    playerSign.textContent = "?";
+    computerSign.textContent = "?";
+    round.textContent = "The current round is: " + `${currentRound}`;
+}
 
 function handleClick (playerSelection) {
     if (isGameOver()) {   
