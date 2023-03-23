@@ -1,21 +1,33 @@
+body {
+    color: #040404;
+    background-color: #699AC9;
+}
+
 .header {
     text-align: center;
-    margin-bottom: 3em;
+    margin-bottom: 0em;
+    background-color: #4380BC;
+    padding: 3em;
 }
+
 
 .scoreContainer {
     display: flex;
     justify-content: center;
+    flex: auto;
+    flex-wrap: wrap;
 }
 
 .scoreBox{
-    margin: 5em 13em 5em 13em;
+    margin: 2em 7em 5em 7em;
+    color: #040404;
 }
 
 .btnContainer {
     display: flex;
     justify-content: space-between;
     margin: 2em;
+    
 }
 
 .sign {
@@ -26,4 +38,17 @@
     height: 3em;
     width: 3em;
     font-size: 4em;
+    background-color: #909192;
+    color: #040404;
+    border-radius: 40%;
+    border-style: solid, #040404;
+    border-width: thick;
+}
+
+#restartBtn {
+    height: 2em;
+    width: 2em;
+    font-size: 3em;
+    background-color: #909192;
+    color: #040404;
 }

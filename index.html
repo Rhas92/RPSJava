@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ramón Rock Paper Scissors Game</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -24,6 +24,11 @@
             </div>
 
             <div class="scoreBox">
+                <div class="sign" id="tieSign">&#128084;</div>
+                <p class="score" id="ties">Ties: 0</p>
+            </div>
+
+            <div class="scoreBox">
                 <div class="sign" id="computerSign">&#10068;</div>
                 <p class="score" id="computerScore">Computer: 0</p>
             </div>
@@ -31,7 +36,7 @@
 
         <div class="btnContainer">
             <button class="btn" id="paperBtn">
-                &#129531;
+                &#128478;
             </button>
             <button class="btn" id="scissorsBtn">
                 &#9988;
@@ -41,13 +46,15 @@
             </button>
         </div>
 
-        <div>
-            <h1>The current round is:
-                <div id="round"></div>
-            </h1>
-        </div>
+        
+        <h2 id="round">The current round is: 1</h2>
+
+        <button id="restartBtn">&circlearrowleft;</button>
+
+
 
     </main> 
+
 
     <script src="script.js"> </script>
 </body>
