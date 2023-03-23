@@ -5,6 +5,7 @@ let computerWin = 0;
 let gameTies = 0;
 let roundWinner = '';
 let currentRound = 1;
+let gameWinner = '';
 
 /// Function that returns either "ROCK", "PAPER" or "SCISSORS" as the computerSelection. 
 
@@ -23,9 +24,14 @@ function getComputerChoice() {
 } 
 
 function isGameOver() {
-    return playerScore === 5 || computerScore === 5
+    if (playerWin === 5) {
+        gameWinner = "player";
+    } else if (computerWin === 5) {
+        gameWinner = "computer";
+    }
+    return playerWin === 5 || computerWin === 5
   }
-
+ 
 
 /// This function play a round of the game by comparing the playerSelection to the computerSelection and giving an alert depending on the result of the comparison.
 /// If the player didn't choose a valid option the round restarts.
@@ -59,10 +65,6 @@ function playRound(playerSelection, computerSelection) {
             console.log(roundWinner);
     }
 }
-
-
-
-   
 /// UI
 const playerSign = document.getElementById("playerSign")
 const playerScore = document.getElementById("playerScore")
@@ -72,7 +74,6 @@ const paperBtn = document.getElementById("paperBtn")
 const rockBtn = document.getElementById ("rockBtn")
 const scissorsBtn = document.getElementById("scissorsBtn")
 const round = document.getElementById("round")
-const currentScore = document.getElementById("currentScore")
 
 paperBtn.addEventListener("click", () => handleClick("PAPER"));
 rockBtn.addEventListener("click", () => handleClick("ROCK"));
@@ -80,23 +81,31 @@ scissorsBtn.addEventListener("click", () => handleClick("SCISSORS"));
 
 
 function handleClick (playerSelection) {
-    const computerSelection = getComputerChoice();
-    playRound(playerSelection,computerSelection);
+    if (isGameOver()) {   
+        alert("Game Over! " + gameWinner + " won!")
+    }
+    else {
+        const computerSelection = getComputerChoice();
+        playRound(playerSelection,computerSelection);
+        updateScore();
+        updateSigns(playerSelection,computerSelection);
+        isGameOver();
+    }
 }
+
+function updateScore(){
+
+}
+
+function updateSigns(){
+
+}
+
+
+
 
 
 /// Function that declares the winner comparing computerWin to playerWin.
-
-function gameWinner () {
-    
-    if (computerWin > 2) {
-        alert ("The computer has won " + computerWin + " to " + playerWin + " with " + gameTies + " ties.")
-    } 
-    
-    else if (playerWin > 2) {
-        alert ("You have won " + playerWin + " to " + computerWin + " with " + gameTies + " ties.")
-    } 
-}
 
 
 /// Coded by Ramon Aller August 31st 2022.
