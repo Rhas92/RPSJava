@@ -1,9 +1,10 @@
+/// These variables keep track of the player wins, computer wins, ties and the round winner.
 
-/// Choices from the computer and player are stored in these variables.
-
-const computerSelection = getComputerChoice();
-const playerSelection = "ROCK";
-
+let playerWin = 0;
+let computerWin = 0;
+let gameTies = 0;
+let roundWinner = '';
+let currentRound = 1;
 
 /// Function that returns either "ROCK", "PAPER" or "SCISSORS" as the computerSelection. 
 
@@ -14,92 +15,88 @@ function getComputerChoice() {
     switch (computerRandomChoice) {
         case 0:
             return("ROCK");
-            break;
         case 1:
             return("PAPER");
-            break;
         case 2:
             return("SCISSORS");
-            break;
     }
 } 
 
-/// These variables keep track of the player wins, computer wins and ties.
+function isGameOver() {
+    return playerScore === 5 || computerScore === 5
+  }
 
-let playerWin = 0;
-let computerWin = 0;
-let gameTies = 0;
-
-/// Function that prompts the player to input a choice and is case insensitive since it always converts the string toUpperCase.
-
-function getPlayerChoice () {
-   return prompt ("Please enter a choice:").toUpperCase();
-}
 
 /// This function play a round of the game by comparing the playerSelection to the computerSelection and giving an alert depending on the result of the comparison.
 /// If the player didn't choose a valid option the round restarts.
 
 function playRound(playerSelection, computerSelection) {
-   
-    playerSelection = getPlayerChoice();
-    computerSelection = getComputerChoice();
     
     if ((playerSelection === "PAPER" && computerSelection === "ROCK") || 
         (playerSelection === "ROCK" && computerSelection === "SCISSORS") || 
         (playerSelection === "SCISSORS" && computerSelection === "PAPER")) {
             
-            alert ("You selected: " + playerSelection + " " + "The computer selected: " + computerSelection + "." + " You won!");
-            playerWin = playerWin + 1;
+            playerWin ++;
+            roundWinner = "player";
+            currentRound ++;
+            console.log(roundWinner);
     } 
     
     else if ((playerSelection === "PAPER" && computerSelection === "SCISSORS") ||
              (playerSelection === "ROCK" && computerSelection === "PAPER") ||
              (playerSelection === "SCISSORS" && computerSelection === "ROCK")) {
             
-            alert ("You selected: " + playerSelection + " " + "The computer selected: " + computerSelection + "." + " You lost!")
-            computerWin = computerWin + 1;
+            computerWin ++;
+            roundWinner = "computer";
+            currentRound ++;
+            console.log(roundWinner);
     } 
 
-    else if (playerSelection === computerSelection) {
-            
-            alert ("You selected: " + playerSelection + " " + "The computer selected: " + computerSelection + "." + " No winner!")
-            gameTies = gameTies + 1;
+    else if (playerSelection === computerSelection) {     
+            gameTies ++;
+            roundWinner = "tie";
+            currentRound ++;
+            console.log(roundWinner);
     }
 }
-   
-/// Plays 5 rounds of the game logging in the console the score.
 
-function game () {
-    
-    for (let i = 0; i < 5; i++){
-        playRound ();
-        console.log("Player wins: " + playerWin);
-        console.log("Computer wins: " + computerWin);
-        console.log("Rounds tied: " + gameTies);
-    }
+
+
+   
+/// UI
+const playerSign = document.getElementById("playerSign")
+const playerScore = document.getElementById("playerScore")
+const computerSign = document.getElementById("computerSign")
+const computerScore = document.getElementById("computerScore")
+const paperBtn = document.getElementById("paperBtn")
+const rockBtn = document.getElementById ("rockBtn")
+const scissorsBtn = document.getElementById("scissorsBtn")
+const round = document.getElementById("round")
+const currentScore = document.getElementById("currentScore")
+
+paperBtn.addEventListener("click", () => handleClick("PAPER"));
+rockBtn.addEventListener("click", () => handleClick("ROCK"));
+scissorsBtn.addEventListener("click", () => handleClick("SCISSORS"));
+
+
+function handleClick (playerSelection) {
+    const computerSelection = getComputerChoice();
+    playRound(playerSelection,computerSelection);
 }
+
 
 /// Function that declares the winner comparing computerWin to playerWin.
 
 function gameWinner () {
     
-    if (computerWin > playerWin) {
+    if (computerWin > 2) {
         alert ("The computer has won " + computerWin + " to " + playerWin + " with " + gameTies + " ties.")
     } 
     
-    else if (playerWin > computerWin) {
+    else if (playerWin > 2) {
         alert ("You have won " + playerWin + " to " + computerWin + " with " + gameTies + " ties.")
     } 
-    
-    else if (playerWin === computerWin) {
-        alert ("This is a tie, reload and try again.")
-    }
 }
 
-/// This section initializes the program.
-
-game ();
-gameWinner ();
 
 /// Coded by Ramon Aller August 31st 2022.
-

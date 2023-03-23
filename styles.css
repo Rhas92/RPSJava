@@ -1,0 +1,29 @@
+.header {
+    text-align: center;
+    margin-bottom: 3em;
+}
+
+.scoreContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.scoreBox{
+    margin: 5em 13em 5em 13em;
+}
+
+.btnContainer {
+    display: flex;
+    justify-content: space-between;
+    margin: 2em;
+}
+
+.sign {
+    font-size: 4em;
+}
+
+.btn {
+    height: 3em;
+    width: 3em;
+    font-size: 4em;
+}
